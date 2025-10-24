@@ -156,7 +156,8 @@ h2 {
   min-height: auto;
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: flex-start;
+  overflow: visible;
 }
 
 #manual-section .card img,
@@ -165,10 +166,14 @@ h2 {
 #clubes-section .card img,
 #projetos-section .card img,
 #terceirao-section .card img {
-  width: 300px;
-  height: auto;
+  width: 280px;
+  height: 200px;
   min-height: 200px;
+  max-height: 200px;
   flex-shrink: 0;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
 }
 
 #manual-section .card-content,
@@ -180,6 +185,8 @@ h2 {
   flex: 1;
   padding: 30px;
   min-height: auto;
+  overflow-y: visible;
+  max-height: none;
 }
 
 /* Cards */
@@ -190,20 +197,37 @@ h2 {
   overflow: hidden;
   transition: all 0.3s cubic-bezier(.4,2,.3,1);
   min-height: 600px;
+  position: relative;
+}
+
+/* Melhorar layout das imagens nos cards normais */
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+  border-bottom: none;
+  transition: border-color 0.3s;
+  display: block;
+}
+
+/* Garantir que as imagens dos cards retangulares mantenham proporção */
+#manual-section .card img,
+#entrevistas-section .card img,
+#jif-section .card img,
+#clubes-section .card img,
+#projetos-section .card img,
+#terceirao-section .card img {
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
 }
 
 .card:hover {
-  transform: none;s
+  transform: none;
   box-shadow: 0 12px 32px rgba(0,0,0,0.18);
 }
 
-.card img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-bottom: none;
-  transition: border-color 0.3s;
-}
 
 .card-content {
   padding: 35px 28px 25px 28px;
@@ -343,6 +367,88 @@ h2 {
   backdrop-filter: blur(10px);
 }
 
+/* Melhorias para mobile */
+@media (max-width: 480px) {
+  body {
+    padding: 15px 8px;
+    padding-top: 100px;
+  }
+  
+  .header-content {
+    padding: 8px 10px;
+  }
+  
+  .header-logo {
+    height: 40px;
+  }
+  
+  .header-contact,
+  .header-email {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  
+  .header-link-text {
+    font-size: 0.75rem;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  h2 {
+    font-size: 1rem;
+  }
+  
+  #welcome-section h1 {
+    font-size: 1.8rem;
+  }
+  
+  #welcome-section h3 {
+    font-size: 1rem;
+  }
+  
+  .card {
+    margin-bottom: 15px;
+  }
+  
+  .card-content {
+    padding: 15px 12px;
+  }
+  
+  .card img {
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .card h2 {
+    font-size: 1.1rem;
+  }
+  
+  .card p {
+    font-size: 0.9rem;
+  }
+  
+  .read-more-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  .campus-img {
+    height: 160px;
+  }
+  
+  .about-us-section {
+    margin: 20px auto;
+    padding: 15px 10px;
+  }
+  
+  .about-us-section h2 {
+    font-size: 1.4rem;
+  }
+}
+
 .about-us-section h2 {
   text-align: center;
   margin-bottom: 40px;
@@ -430,6 +536,16 @@ h2 {
     height: 48px;
   }
   
+  .header-contact,
+  .header-email {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+  
+  .header-link-text {
+    font-size: 0.9rem;
+  }
+  
   .campus-gallery {
     grid-template-columns: 1fr;
     gap: 25px;
@@ -438,20 +554,129 @@ h2 {
   
   .campus-img:hover {
     transform: none;
-	box-shadow: 0 20px 50px rgba(0,0,0,0.25)
-	border-color: #00713a;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    border-color: #00713a;
   }
   
   .about-us-section {
     margin: 40px auto;
     padding: 30px 15px;
   }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  .card {
+    min-height: 500px;
+  }
+  
+  .card-content {
+    padding: 25px 20px;
+  }
 }
 
 @media (max-width: 600px) {
+  body {
+    padding: 20px 10px;
+    padding-top: 120px;
+  }
+  
   .container {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 20px;
+  }
+  
+  /* Header mobile */
+  .header-content {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 15px;
+    gap: 10px;
+  }
+  
+  .header-left {
+    order: 1;
+  }
+  
+  .header-right {
+    order: 2;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .header-logo {
+    height: 45px;
+  }
+  
+  .header-contact,
+  .header-email {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    gap: 5px;
+  }
+  
+  .header-link-text {
+    font-size: 0.8rem;
+  }
+  
+  .header-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Títulos mobile */
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  
+  #welcome-section h1 {
+    font-size: 2rem;
+  }
+  
+  #welcome-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
+  /* Cards mobile */
+  .card {
+    min-height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .card-content {
+    padding: 20px 15px;
+    min-height: auto;
+  }
+  
+  .card img {
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
   }
   
   /* Cards retangulares em mobile */
@@ -462,6 +687,7 @@ h2 {
   #projetos-section .card,
   #terceirao-section .card {
     flex-direction: column;
+    align-items: stretch;
   }
   
   #manual-section .card img,
@@ -471,8 +697,12 @@ h2 {
   #projetos-section .card img,
   #terceirao-section .card img {
     width: 100%;
-    height: 200px;
-    min-height: auto;
+    height: 180px;
+    min-height: 180px;
+    max-height: 180px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
   }
   
   #manual-section .card-content,
@@ -481,41 +711,21 @@ h2 {
   #clubes-section .card-content,
   #projetos-section .card-content,
   #terceirao-section .card-content {
-    padding: 20px 15px 15px 15px;
+    padding: 20px 15px;
+    max-height: none;
+    overflow-y: visible;
+    flex: 1;
   }
   
-  .header-content {
-    flex-direction: column;
-    height: auto;
-    padding: 8px 2vw;
-    gap: 8px;
+  /* Botões mobile */
+  .read-more-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
   
-  .header-right {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-  }
-  
-  .header-logo {
-    height: 38px;
-  }
-  
-  .card-content {
-    padding: 20px 15px 15px 15px;
-    min-height: 280px;
-  }
-  
-  .card {
-    min-height: 500px;
-  }
-  
-  .card img {
-    height: 220px;
-  }
-  
+  /* Texto expandido mobile */
   .card .more-text h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-top: 20px;
     margin-bottom: 15px;
   }
@@ -528,32 +738,41 @@ h2 {
   
   .card .more-text p {
     margin-bottom: 15px;
-    line-height: 1.7;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  
+  .card .more-text strong {
     font-size: 1rem;
   }
   
+  /* Galeria mobile */
   .campus-gallery {
-    gap: 20px;
+    gap: 15px;
   }
   
   .campus-img {
-    height: 200px;
+    height: 180px;
     border-radius: 15px;
   }
   
   .about-us-section {
     margin: 30px auto;
-    padding: 25px 10px;
+    padding: 20px 15px;
   }
   
   .about-us-section h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   
-  .card img {
-  width: 10px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+  /* Cards especiais mobile */
+  .card .card-img-menor {
+    max-height: 80px;
+    margin: 20px auto 10px auto;
   }
-} 
+  
+  .card .card-img-medio {
+    max-height: 120px;
+    margin: 20px auto 10px auto;
+  }
+}
